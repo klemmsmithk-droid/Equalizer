@@ -7,7 +7,7 @@
 	<key>NSAudioCaptureUsageDescription</key>
 	<string>FineTune needs access to control volume levels for individual applications.</string>
 	<key>SUFeedURL</key>
-	<string>https://raw.githubusercontent.com/ronitsingh10/FineTune/main/appcast.xml</string>
+	<string>https://raw.githubusercontent.com/klemmsmithk-droid/Equalizer/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>xExSoQmCLDCez0KyhZ9EM9PdOZFZgyX/+VF+OVrpIlo=</string>
 	<key>SUEnableInstallerLauncherService</key>

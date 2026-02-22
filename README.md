@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ronitsingh10/FineTune/releases/latest"><img src="https://img.shields.io/github/v/release/ronitsingh10/FineTune" alt="Latest Release"></a>
-  <a href="https://github.com/ronitsingh10/FineTune/releases"><img src="https://img.shields.io/github/downloads/ronitsingh10/FineTune/total" alt="Downloads"></a>
+  <a href="https://github.com/klemmsmithk-droid/Equalizer/releases/latest"><img src="https://img.shields.io/github/v/release/klemmsmithk-droid/Equalizer" alt="Latest Release"></a>
+  <a href="https://github.com/klemmsmithk-droid/Equalizer/releases"><img src="https://img.shields.io/github/downloads/klemmsmithk-droid/Equalizer/total" alt="Downloads"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a>
   <a href="https://www.apple.com/macos/"><img src="https://img.shields.io/badge/macOS-15%2B-brightgreen" alt="macOS 15+"></a>
 </p>
@@ -53,7 +53,7 @@
 brew install --cask finetune
 ```
 
-**Manual** — [Download latest release](https://github.com/ronitsingh10/FineTune/releases/latest)
+**Manual** — [Download latest release](https://github.com/klemmsmithk-droid/Equalizer/releases/latest)
 
 ## Why FineTune?
 
@@ -149,14 +149,14 @@ osascript -e 'id of app "App Name"'
 ## Contributing
 
 - ⭐ **Star this repo** — Help others discover FineTune
-- 🐛 **Report bugs** — [Open an issue](https://github.com/ronitsingh10/FineTune/issues)
+- 🐛 **Report bugs** — [Open an issue](https://github.com/klemmsmithk-droid/Equalizer/issues)
 - 💻 **Contribute code** — See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Build from Source
 
 ```bash
-git clone https://github.com/ronitsingh10/FineTune.git
-cd FineTune
+git clone https://github.com/klemmsmithk-droid/Equalizer.git
+cd Equalizer
 open FineTune.xcodeproj
 ```
 

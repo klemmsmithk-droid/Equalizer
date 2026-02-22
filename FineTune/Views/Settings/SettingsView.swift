@@ -194,7 +194,7 @@ struct SettingsView: View {
         let yearText = startYear == currentYear ? "\(startYear)" : "\(startYear)-\(currentYear)"
 
         return HStack(spacing: DesignTokens.Spacing.xs) {
-            Link(destination: URL(string: "https://github.com/ronitsingh10/FineTune")!) {
+            Link(destination: URL(string: "https://github.com/klemmsmithk-droid/Equalizer")!) {
                 Text("\(Image(systemName: "star")) Star on GitHub")
             }
 

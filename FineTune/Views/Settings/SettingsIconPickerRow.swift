@@ -57,21 +57,16 @@ struct SettingsIconPickerRow: View {
 
     /// Relaunches the app to apply icon changes
     private func restartApp() {
-        let url = Bundle.main.bundleURL
-
-        // Use shell to wait for app to quit, then relaunch
-        let script = """
-            sleep 0.5
-            open "\(url.path)"
-            """
-
+        let appPath = Bundle.main.bundleURL.path
         let task = Process()
-        task.launchPath = "/bin/sh"
-        task.arguments = ["-c", script]
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/open")
+        task.arguments = ["-n", appPath]
         try? task.run()
 
-        // Quit the app
-        NSApplication.shared.terminate(nil)
+        // Give LaunchServices a brief moment to spin up the new instance.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            NSApplication.shared.terminate(nil)
+        }
     }
 }
 

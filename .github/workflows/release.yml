@@ -154,7 +154,16 @@ jobs:
 
           # Download Sparkle tools
           SPARKLE_VERSION="2.8.1"
+          SPARKLE_SHA256="5cddb7695674ef7704268f38eccaee80e3accbf19e61c1689efff5b6116d85be"
           curl -L -o sparkle.tar.xz "https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz"
+
+          # Verify archive integrity before extraction/execution
+          ACTUAL_SHA256="$(shasum -a 256 sparkle.tar.xz | awk '{print $1}')"
+          if [ "$ACTUAL_SHA256" != "$SPARKLE_SHA256" ]; then
+            echo "Sparkle checksum mismatch: expected $SPARKLE_SHA256, got $ACTUAL_SHA256"
+            exit 1
+          fi
+
           mkdir -p sparkle_tools
           tar -xf sparkle.tar.xz -C sparkle_tools
 
@@ -168,7 +177,7 @@ jobs:
           # Run generate_appcast to update appcast.xml with proper EdDSA signature
           sparkle_tools/bin/generate_appcast \
             --ed-key-file "$RUNNER_TEMP/sparkle_private_key" \
-            --download-url-prefix "https://github.com/ronitsingh10/FineTune/releases/download/v${VERSION}/" \
+            --download-url-prefix "https://github.com/klemmsmithk-droid/Equalizer/releases/download/v${VERSION}/" \
             -o appcast.xml \
             Release/
 
