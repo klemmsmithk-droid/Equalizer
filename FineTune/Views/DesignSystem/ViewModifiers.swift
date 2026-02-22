@@ -12,7 +12,7 @@ struct HoverableRowModifier: ViewModifier {
             .padding(.vertical, DesignTokens.Spacing.xs)
             .background(
                 RoundedRectangle(cornerRadius: DesignTokens.Dimensions.buttonRadius)
-                    .fill(.ultraThinMaterial.opacity(0.34))
+                    .fill(.ultraThinMaterial.opacity(0.26))
             )
             // Hover effect overlay (materials don't have native hover states)
             .overlay(

@@ -78,10 +78,10 @@ enum DesignTokens {
         // MARK: Glass Effects
 
         /// Popup background overlay
-        static let popupOverlay: Color = .black.opacity(0.08)
+        static let popupOverlay: Color = .black.opacity(0.05)
 
         /// Recessed panel background (EQ panel)
-        static let recessedBackground: Color = .black.opacity(0.12)
+        static let recessedBackground: Color = .black.opacity(0.09)
 
         // MARK: Menu/Picker
 

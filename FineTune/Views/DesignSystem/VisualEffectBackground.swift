@@ -59,20 +59,12 @@ struct LiquidGlassBackgroundModifier: ViewModifier {
                     // Native vibrancy base.
                     VisualEffectBackground(material: .menu, blendingMode: .behindWindow)
 
-                    // Very light tint to keep contrast without muddying translucency.
-                    Color.black.opacity(0.04)
+                    // Subtle tint only; keep background clearly visible.
+                    Color.black.opacity(0.02)
 
-                    // Soft liquid highlight near the top edge.
-                    RadialGradient(
-                        colors: [.white.opacity(0.20), .clear],
-                        center: .top,
-                        startRadius: 4,
-                        endRadius: 320
-                    )
-
-                    // Gentle vertical gleam for a curved glass look.
+                    // Depth-only shading (no white sheen).
                     LinearGradient(
-                        colors: [.white.opacity(0.10), .clear, .black.opacity(0.04)],
+                        colors: [.clear, .black.opacity(0.03)],
                         startPoint: .top,
                         endPoint: .bottom
                     )
@@ -81,13 +73,13 @@ struct LiquidGlassBackgroundModifier: ViewModifier {
             .clipShape(shape)
             .overlay {
                 shape
-                    .strokeBorder(.white.opacity(0.24), lineWidth: 0.6)
+                    .strokeBorder(.white.opacity(0.16), lineWidth: 0.5)
             }
             .overlay {
                 shape
-                    .strokeBorder(.black.opacity(0.10), lineWidth: 0.45)
+                    .strokeBorder(.black.opacity(0.06), lineWidth: 0.4)
             }
-            .shadow(color: .black.opacity(0.14), radius: 10, y: 6)
+            .shadow(color: .black.opacity(0.10), radius: 8, y: 5)
     }
 }
 
