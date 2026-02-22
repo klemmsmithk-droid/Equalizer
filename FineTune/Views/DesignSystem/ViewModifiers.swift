@@ -12,17 +12,20 @@ struct HoverableRowModifier: ViewModifier {
             .padding(.vertical, DesignTokens.Spacing.xs)
             .background(
                 RoundedRectangle(cornerRadius: DesignTokens.Dimensions.buttonRadius)
-                    .fill(.ultraThinMaterial)
+                    .fill(.regularMaterial.opacity(0.55))
             )
             // Hover effect overlay (materials don't have native hover states)
             .overlay(
                 RoundedRectangle(cornerRadius: DesignTokens.Dimensions.buttonRadius)
-                    .fill(isHovered ? Color.white.opacity(0.04) : Color.clear)
+                    .fill(isHovered ? Color.white.opacity(0.08) : Color.clear)
                     .allowsHitTesting(false)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: DesignTokens.Dimensions.buttonRadius)
-                    .stroke(DesignTokens.Colors.glassBorder, lineWidth: 0.5)
+                    .stroke(
+                        isHovered ? DesignTokens.Colors.glassBorderHover : DesignTokens.Colors.glassBorder,
+                        lineWidth: 0.45
+                    )
                     .allowsHitTesting(false)
             )
             .onHover { hovering in

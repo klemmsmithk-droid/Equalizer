@@ -4,7 +4,7 @@ import AppKit
 
 /// A frosted glass background using NSVisualEffectView.
 struct VisualEffectBackground: NSViewRepresentable {
-    var material: NSVisualEffectView.Material = .popover
+    var material: NSVisualEffectView.Material = .menu
     var blendingMode: NSVisualEffectView.BlendingMode = .behindWindow
 
     func makeNSView(context: Context) -> NSVisualEffectView {
@@ -56,39 +56,38 @@ struct LiquidGlassBackgroundModifier: ViewModifier {
         content
             .background {
                 ZStack {
-                    VisualEffectBackground(material: .hudWindow, blendingMode: .behindWindow)
+                    // Native vibrancy base.
+                    VisualEffectBackground(material: .menu, blendingMode: .behindWindow)
 
-                    // Subtle dark tint to improve legibility over bright wallpapers.
-                    LinearGradient(
-                        colors: [
-                            .white.opacity(0.07),
-                            DesignTokens.Colors.popupOverlay,
-                            .black.opacity(0.46)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                    // Very light tint to keep contrast without muddying translucency.
+                    Color.black.opacity(0.08)
+
+                    // Soft liquid highlight near the top edge.
+                    RadialGradient(
+                        colors: [.white.opacity(0.20), .clear],
+                        center: .top,
+                        startRadius: 4,
+                        endRadius: 320
                     )
 
-                    // Soft specular highlight to mimic liquid glass curvature.
-                    RadialGradient(
-                        colors: [.white.opacity(0.22), .clear],
-                        center: .topLeading,
-                        startRadius: 8,
-                        endRadius: 260
+                    // Gentle vertical gleam for a curved glass look.
+                    LinearGradient(
+                        colors: [.white.opacity(0.10), .clear, .black.opacity(0.08)],
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
                 }
             }
             .clipShape(shape)
             .overlay {
                 shape
-                    .strokeBorder(.white.opacity(0.22), lineWidth: 0.6)
+                    .strokeBorder(.white.opacity(0.24), lineWidth: 0.6)
             }
             .overlay {
                 shape
-                    .strokeBorder(.black.opacity(0.3), lineWidth: 0.5)
-                    .blur(radius: 0.4)
+                    .strokeBorder(.black.opacity(0.10), lineWidth: 0.45)
             }
-            .shadow(color: .black.opacity(0.33), radius: 20, y: 10)
+            .shadow(color: .black.opacity(0.14), radius: 10, y: 6)
     }
 }
 
