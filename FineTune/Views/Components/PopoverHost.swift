@@ -58,6 +58,9 @@ struct PopoverHost<Content: View>: NSViewRepresentable {
             )
             panel.isOpaque = false
             panel.backgroundColor = .clear
+            // Make the entire popup window physically translucent so desktop/app
+            // content behind the panel remains visible.
+            panel.alphaValue = 0.62
             panel.level = .popUpMenu
             panel.hasShadow = true
             panel.collectionBehavior = [.fullScreenAuxiliary]

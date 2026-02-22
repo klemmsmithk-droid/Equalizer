@@ -60,7 +60,7 @@ struct LiquidGlassBackgroundModifier: ViewModifier {
                     VisualEffectBackground(material: .menu, blendingMode: .behindWindow)
 
                     // Very light tint to keep contrast without muddying translucency.
-                    Color.black.opacity(0.08)
+                    Color.black.opacity(0.04)
 
                     // Soft liquid highlight near the top edge.
                     RadialGradient(
@@ -72,7 +72,7 @@ struct LiquidGlassBackgroundModifier: ViewModifier {
 
                     // Gentle vertical gleam for a curved glass look.
                     LinearGradient(
-                        colors: [.white.opacity(0.10), .clear, .black.opacity(0.08)],
+                        colors: [.white.opacity(0.10), .clear, .black.opacity(0.04)],
                         startPoint: .top,
                         endPoint: .bottom
                     )

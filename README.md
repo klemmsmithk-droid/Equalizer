@@ -47,13 +47,19 @@
 
 ## Install
 
-**Homebrew** (recommended)
+**Quick install (Terminal, no dependencies)**
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/klemmsmithk-droid/Equalizer/main/scripts/install.sh)"
+```
+
+**Homebrew** (if/when cask is available)
 
 ```bash
 brew install --cask finetune
 ```
 
-**Manual** — [Download latest release](https://github.com/klemmsmithk-droid/Equalizer/releases/latest)
+**Manual (easiest for most users)** — [Download latest release](https://github.com/klemmsmithk-droid/Equalizer/releases/latest), then drag `FineTune.app` to Applications.
 
 ## Why FineTune?
 
