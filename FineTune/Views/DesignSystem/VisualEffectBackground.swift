@@ -2,11 +2,9 @@
 import SwiftUI
 import AppKit
 
-/// A dark frosted glass background using NSVisualEffectView
-/// Provides deeper vibrancy than SwiftUI's built-in materials
-/// Updated for macOS 26+ Liquid Glass aesthetic
+/// A frosted glass background using NSVisualEffectView.
 struct VisualEffectBackground: NSViewRepresentable {
-    var material: NSVisualEffectView.Material = .hudWindow
+    var material: NSVisualEffectView.Material = .popover
     var blendingMode: NSVisualEffectView.BlendingMode = .behindWindow
 
     func makeNSView(context: Context) -> NSVisualEffectView {
@@ -14,8 +12,7 @@ struct VisualEffectBackground: NSViewRepresentable {
         view.material = material
         view.blendingMode = blendingMode
         view.state = .active
-        // Force dark appearance for consistency
-        view.appearance = NSAppearance(named: .darkAqua)
+        view.isEmphasized = true
         return view
     }
 
@@ -36,17 +33,62 @@ extension Color {
 // MARK: - View Extensions
 
 extension View {
-    /// Applies a dark glass background using NSVisualEffectView
-    /// The primary popup container style - darker to make floating rows pop
+    /// Applies a liquid glass popup background with native material depth.
     func darkGlassBackground() -> some View {
-        self
-            .background(Color.popupBackgroundOverlay)
-            .background(VisualEffectBackground(material: .hudWindow, blendingMode: .behindWindow))
+        modifier(LiquidGlassBackgroundModifier())
     }
 
     /// Applies EQ panel glass background (recessed style)
     func eqPanelBackground() -> some View {
         modifier(EQPanelBackgroundModifier())
+    }
+}
+
+// MARK: - Liquid Glass Background Modifier
+
+struct LiquidGlassBackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        let shape = RoundedRectangle(
+            cornerRadius: DesignTokens.Dimensions.cornerRadius,
+            style: .continuous
+        )
+
+        content
+            .background {
+                ZStack {
+                    VisualEffectBackground(material: .hudWindow, blendingMode: .behindWindow)
+
+                    // Subtle dark tint to improve legibility over bright wallpapers.
+                    LinearGradient(
+                        colors: [
+                            .white.opacity(0.07),
+                            DesignTokens.Colors.popupOverlay,
+                            .black.opacity(0.46)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+
+                    // Soft specular highlight to mimic liquid glass curvature.
+                    RadialGradient(
+                        colors: [.white.opacity(0.22), .clear],
+                        center: .topLeading,
+                        startRadius: 8,
+                        endRadius: 260
+                    )
+                }
+            }
+            .clipShape(shape)
+            .overlay {
+                shape
+                    .strokeBorder(.white.opacity(0.22), lineWidth: 0.6)
+            }
+            .overlay {
+                shape
+                    .strokeBorder(.black.opacity(0.3), lineWidth: 0.5)
+                    .blur(radius: 0.4)
+            }
+            .shadow(color: .black.opacity(0.33), radius: 20, y: 10)
     }
 }
 
